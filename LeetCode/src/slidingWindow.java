@@ -5,7 +5,7 @@
 import java.util.*;
 import java.io.*;
 import java.math.*;
-public class template 
+public class slidingWindow 
 {
 	public static void main(String[] args) 
 	{
@@ -14,11 +14,92 @@ public class template
         InputReader in = new InputReader(inputStream);
         PrintWriter out = new PrintWriter(outputStream); 
 		//------Start-----
-		
+        int n=in.nextInt();
+        int k=in.nextInt();
+		int ar[]=new int[n];
+		for(int i=0;i<n;i++)
+		{
+			ar[i]=in.nextInt();
+		}
+//		ArrayList<Integer> sl=new ArrayList<Integer>();
+		int max=0;
+		int l=0,r=0;
+		int s1[]=new int[k];
+		for(int i=0;i<k;i++)
+		{
+//			sl.add(ar[i]);
+			max+=ar[i];
+			s1[i]=ar[i];
+		}
+		r=k-1;
+		int fin;
+		int tempMax=max;
+		for(int i=k;i<n;i++)
+		{
+			int nl=i-k+1;
+			int nr=i;
+			int narr[]=new int[k];
+			
+
+			narr=getArr(ar,l,r,nl,nr);
+			l=narr[0];
+			r=narr[1];
+//			tempMax=tempMax-ar[i-k]+ar[i];
+//			if(tempMax>max)
+//			{
+////				sl.remove(i-k);
+//				int n1=ar[i];
+////				sl.add(n1);
+//				max=tempMax;
+//				l=i-k+1;
+//				r=i;
+//			}
+		}
+		Integer f[]=new Integer[k];
+		for(int i=l,j=0;i<=r;i++,j++)
+		{
+			f[j]=ar[i];
+//			System.out.println("-"+f[j]);
+		}
 		//-----The End----
 	}
 	//start writing new static method here
- 
+	static int[] getArr(int[] ar,int l, int r, int nl, int nr)
+	 {
+		int arr[]=new int[2];
+		arr[0]=l;
+		arr[1]=r;
+		boolean flag=false;
+		for(int i=0;i<=(r-l);i++)
+		{
+//			System.out.println("l"+l);
+//			System.out.println("r"+r);
+//			System.out.println("nl"+nl);
+//			System.out.println("nr"+nr);
+			if(ar[nl+i]>ar[l+i])
+			{
+				flag=true;
+				break;
+			}
+			else if(ar[nl+i]==ar[l+i])
+			{
+				flag=false;
+				continue;
+			}
+			else
+			{
+				flag=false;
+				break;
+			}
+		}
+		if(flag)
+		{
+			arr[0]=nl;
+			arr[1]=nr;
+		}
+		return arr ;
+	
+	 }
  
 	//My template methods are here--------------------------------------------------
 	static void sieveOfEratosthenes(int n)
