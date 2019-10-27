@@ -21,8 +21,8 @@ public class slidingWindow
 		{
 			ar[i]=in.nextInt();
 		}
-//		ArrayList<Integer> sl=new ArrayList<Integer>();
-//		int max=0;
+		ArrayList<Integer> sl=new ArrayList<Integer>();
+		int max=0;
 		int l=0,r=0;
 		int s1[]=new int[k];
 		for(int i=0;i<k;i++)
