@@ -18,7 +18,9 @@ public class numberScoresHackerrank
 		int n=in.nextInt();
 		int score=0;
 		if(n%3==0)
-			score+=2;
+			{score+=2;
+			System.out.println("3-"+score);
+			}
 		int nc=n;
 		while(nc!=0)
 		{
@@ -28,25 +30,26 @@ public class numberScoresHackerrank
 			if(di%2==0 || di==0)
 				score+=4;
 			nc=nc/10;
+			
 		}
+		System.out.println("7 and even-"+score);
 		ArrayList<Integer> fiveTot=calcFive(n);
 		for(int i=0;i<fiveTot.size();i++)
 		{
 			int counti=fiveTot.get(i);
-			if(counti==2)
-			{	
-				score+=1;
-			}
-			else if(counti>2)
+			if(counti>2)
 			{
 				int diff=counti-2;
-				score+=(diff*2);
+				score+=(diff*3);
 			}
+			score+=((counti-1)*3);
 		}
+		System.out.println("5-"+score);
 		ArrayList<Integer> oneLess=calcOneLess(n);
 		for(int i=0;i<oneLess.size();i++)
 		{
 			int counti=oneLess.get(i);
+			System.out.println("seq count-"+counti);
 			score+=(counti*counti);
 
 		}
@@ -79,6 +82,8 @@ public class numberScoresHackerrank
 				count=1;
 			}
 		}
+		if(flag==true)
+			a1.add(count);
 		return a1;
 	}
 	static ArrayList<Integer> calcFive(int n)
@@ -105,6 +110,8 @@ public class numberScoresHackerrank
 				count=0;
 			}
 		}
+		if(flag==true)
+			a1.add(count);
 		return a1;
 	}
  
