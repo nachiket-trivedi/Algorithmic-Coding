@@ -1,4 +1,3 @@
-
 /*
  *    Nachiket Trivedi
  *    San Jose
@@ -6,7 +5,7 @@
 import java.util.*;
 import java.io.*;
 import java.math.*;
-public class numberScoresHackerrank 
+public class maximalDisjointAdityaTwitter 
 {
 	public static void main(String[] args) 
 	{
@@ -15,108 +14,60 @@ public class numberScoresHackerrank
         InputReader in = new InputReader(inputStream);
         PrintWriter out = new PrintWriter(outputStream); 
 		//------Start-----
-		int n=in.nextInt();
-		int score=0;
-		if(n%7==0)
-			{score+=1;
-			System.out.println("7-"+score);
-			}
-		int nc=n;
-		while(nc!=0)
+        int n=in.nextInt();
+		int ar[]=new int[n];
+		for(int i=0;i<n;i++)
 		{
-			int di=nc%10;
-			if(di==9)
-				score+=4;
-			if(di%2==0 || di==0)
-				score+=2;
-			nc=nc/10;
-			
+			ar[i]=in.nextInt();
 		}
-		System.out.println("7 and even-"+score);
-		ArrayList<Integer> fiveTot=calcFive(n);
-		for(int i=0;i<fiveTot.size();i++)
+        int k=in.nextInt();
+		int br[]=new int[k];
+		for(int i=0;i<k;i++)
 		{
-			int counti=fiveTot.get(i);
-//			if(counti>2)
-//			{
-//				int diff=counti-2;
-//				score+=(diff*3);
-//			}
-			score+=((counti-1)*5);
+			br[i]=in.nextInt();
 		}
-		System.out.println("1-"+score);
-		ArrayList<Integer> oneLess=calcOneLess(n);
-		for(int i=0;i<oneLess.size();i++)
-		{
-			int counti=oneLess.get(i);
-			System.out.println("seq count-"+counti);
-			score+=(counti*counti);
-
-		}
-		System.out.println(score);
+		
+		
+		
 		//-----The End----
 	}
 	//start writing new static method here
-	static ArrayList<Integer> calcOneLess(int n)
-	{
-		int nc=n;
-		int count=1;
-		ArrayList<Integer> a1=new ArrayList<Integer>();
+	static int[] getArr(int[] ar,int l, int r, int nl, int nr)
+	 {
+		int arr[]=new int[2];
+		arr[0]=l;
+		arr[1]=r;
 		boolean flag=false;
-		while(nc!=0)
+		for(int i=0;i<=(r-l);i++)
 		{
-			int d1=nc%10;
-			int d2=(nc/10)%10;
-			System.out.println("d1-"+d1);
-			System.out.println("d2-"+d2);
-			if(d1-d2==1)
+//			System.out.println("l"+l);
+//			System.out.println("r"+r);
+//			System.out.println("nl"+nl);
+//			System.out.println("nr"+nr);
+			if(ar[nl+i]>ar[l+i])
 			{
 				flag=true;
-				count++;
-				nc=nc/10;
+				break;
 			}
-			else 
+			else if(ar[nl+i]==ar[l+i])
 			{
-				if(count>1 && flag)
-					{System.out.println("--->"+count);}
 				flag=false;
-				nc=nc/10;
-				a1.add(count);
-				count=1;
+				continue;
+			}
+			else
+			{
+				flag=false;
+				break;
 			}
 		}
-		if(flag==true)
-			a1.add(--count);
-		return a1;
-	}
-	static ArrayList<Integer> calcFive(int n)
-	{
-		int nc=n;
-		int count=0;
-		ArrayList<Integer> a1=new ArrayList<Integer>();
-		boolean flag=false;
-		while(nc!=0)
+		if(flag)
 		{
-			int di=nc%10;
-			if(di==1)
-			{
-				flag=true;zx
-				count++;
-				nc=nc/10;
-			}
-			else 
-			{
-				if(count>1 && flag)
-					a1.add(count);
-				flag=false;
-				nc=nc/10;
-				count=0;
-			}
+			arr[0]=nl;
+			arr[1]=nr;
 		}
-		if(flag==true)
-			a1.add(count);
-		return a1;
-	}
+		return arr ;
+	
+	 }
  
 	//My template methods are here--------------------------------------------------
 	static void sieveOfEratosthenes(int n)
